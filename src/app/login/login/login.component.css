@@ -1,0 +1,16 @@
+#CardBox {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+    align-content: center;
+    max-width: 600px !important;
+}
+
+.inputBoxes {
+    text-align: left !important;
+    padding-bottom: 20px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+}

@@ -1,0 +1,21 @@
+
+
+<div class="card text-center" id="CardBox">
+  <div class="card-header" style="background-color: #054fb9; color: white; font-size: 20px;">
+    Login
+  </div>
+  <div class="card-body" style="min-height: 250px;">
+    <h5 class="card-title">Please Enter Username And Password</h5>
+    <p style="color: crimson;">{{errorMessage}}</p>
+    <div class="inputBoxes">
+      <label for="UsernameInput" style="text-align: left !important;">Username</label>
+    <input type="text" [(ngModel)]="login.username" class="form-control" id="UsernameInput" aria-describedby="Username" placeholder="Username">
+    </div>
+    <div class="inputBoxes">
+      <label for="PasswrodInput">Password</label>
+    <input type="text"  [(ngModel)]="login.password" class="form-control" id="PasswordInoput" aria-describedby="Passowrd" placeholder="Password">
+    </div>
+    
+    <a class="btn btn-primary" (click)="CheckLoginData()" style="min-width: 150px; background-color: #054fb9 !important;">Login</a>
+  </div>
+</div>
