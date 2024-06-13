@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardComponent } from '../../Dashboard/dashboard/dashboard.component';
 import { NavigationbarComponent } from '../../navidationbar/navigationbar/navigationbar.component';
+import { ResumePageComponent } from '../../ResumePage/resumePage/resumePage.component';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { NavigationbarComponent } from '../../navidationbar/navigationbar/naviga
   imports: [
     DashboardComponent,
     NavigationbarComponent,
+    ResumePageComponent,
   ],
 })
 export class LandingPageComponent implements OnInit {
