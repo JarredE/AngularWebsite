@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Colors } from 'chart.js';
 
-
-
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -32,10 +30,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    // const res = this.http.get(this.url + '/User/GetUserById?Id=1').subscribe(res => {
-    //console.log(res);
-    //this.jsonData = res;
-    // });
+
   }
 
   CheckLoginData() {
@@ -49,11 +44,10 @@ export class LoginComponent implements OnInit {
       this.jsonData = res;
       for(let i = 0; i < this.jsonData.length; i++ ){
         if(this.login.username == this.jsonData[i].username && this.login.password == this.jsonData[i].password){
-          console.log('Moving to next page');
           this.router.navigateByUrl('/landingpage')
         }
       }
-      this.errorMessage = 'No user found'
+      this.errorMessage = 'No Account Found'
     });
 
   }
