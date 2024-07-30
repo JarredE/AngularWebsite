@@ -19,9 +19,10 @@ import { Colors } from 'chart.js';
 
 export class LoginComponent implements OnInit {
 
-  private url = 'http://localhost:3000'
+  private url = 'https://localhost:44355'
   errorMessage = ''
   jsonData: any;
+  isUser: boolean = false;
 
   login = {
     username: '',
@@ -31,23 +32,29 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    const res = this.http.get(this.url + '/user/login').subscribe(res => {
-      console.log(res);
-      this.jsonData = res;
-    });
-
+    // const res = this.http.get(this.url + '/User/GetUserById?Id=1').subscribe(res => {
+    //console.log(res);
+    //this.jsonData = res;
+    // });
   }
 
   CheckLoginData() {
+
+    // Add Regx to this for validation
     if (!this.login.username) { this.errorMessage = 'Username is invalid'; return; }
     if (!this.login.password) { this.errorMessage = 'Password is invalid'; return; }
 
-    if (this.login.username == this.jsonData.Username && this.login.password == this.jsonData.Password) {
-      console.log('Moving to next page');
-      //this.router.navigateByUrl('/landingpage')
-    }
 
-    else { this.errorMessage = 'Username or Password is Incorrect' }
+    const res = this.http.get(this.url + '/User/CheckLogin').subscribe(res => {
+      this.jsonData = res;
+      for(let i = 0; i < this.jsonData.length; i++ ){
+        if(this.login.username == this.jsonData[i].username && this.login.password == this.jsonData[i].password){
+          console.log('Moving to next page');
+          this.router.navigateByUrl('/landingpage')
+        }
+      }
+      this.errorMessage = 'No user found'
+    });
 
   }
 
