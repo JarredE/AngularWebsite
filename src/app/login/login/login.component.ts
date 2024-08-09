@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Colors } from 'chart.js';
 
 @Component({
@@ -34,20 +34,19 @@ export class LoginComponent implements OnInit {
   }
 
   CheckLoginData() {
+  const params = new HttpParams()
+  .set('Username', this.login.username)
+  .set('Password', this.login.password);
 
     // Add Regx to this for validation
     if (!this.login.username) { this.errorMessage = 'Username is invalid'; return; }
     if (!this.login.password) { this.errorMessage = 'Password is invalid'; return; }
 
-
-    const res = this.http.get(this.url + '/User/CheckLogin').subscribe(res => {
-      this.jsonData = res;
-      for(let i = 0; i < this.jsonData.length; i++ ){
-        if(this.login.username == this.jsonData[i].username && this.login.password == this.jsonData[i].password){
-          this.router.navigateByUrl('/landingpage')
-        }
+    const res = this.http.post(this.url + '/User/GetLogin', null, { params: params }).subscribe(res => {
+      if(res == true){
+        this.router.navigateByUrl('/landingpage')
       }
-      this.errorMessage = 'No Account Found'
+      else this.errorMessage = 'No Account Found'
     });
 
   }
